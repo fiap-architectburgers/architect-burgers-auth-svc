@@ -57,6 +57,11 @@ jobs:
       - name: Create TF-Backend Dynamodb table
         run: ./utils/create-dyndb-table.sh ${{inputs.TF_LOCK_TABLE_NAME}}
 
+      - name: Setup Terraform
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7
+
       - name: Terraform Init
         run: |
           cd terraform && terraform init \
